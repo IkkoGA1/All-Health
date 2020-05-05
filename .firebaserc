@@ -1,0 +1,11 @@
+{
+  "targets": {
+    "all-health": {
+      "hosting": {
+        "all-health": [
+          "all-health"
+        ]
+      }
+    }
+  }
+}

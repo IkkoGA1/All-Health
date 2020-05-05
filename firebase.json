@@ -1,0 +1,19 @@
+{
+  "hosting": [
+    {
+      "target": "all-health",
+      "public": "dist/all-health",
+      "ignore": [
+        "firebase.json",
+        "**/.*",
+        "**/node_modules/**"
+      ],
+      "rewrites": [
+        {
+          "source": "**",
+          "destination": "/index.html"
+        }
+      ]
+    }
+  ]
+}
