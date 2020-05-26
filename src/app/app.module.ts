@@ -14,7 +14,6 @@ import { HomeComponent } from './home/home.component';
 import { AboutComponent } from './about/about.component';
 import { LoginComponent } from './login/login.component';
 import { AdminStaffComponent } from './admin/admin-staff/admin-staff.component';
-import { AdminPatientsComponent as AdminUsersComponent } from './admin/admin-patients/admin-patients.component';
 import { PatientRegistrationComponent as UserRegistrationComponent } from './user/user-registration/patient-registration.component';
 import { AboutStaffComponent } from './about/about-staff/about-staff.component';
 import { AboutFaqComponent } from './about/about-faq/about-faq.component';
