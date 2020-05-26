@@ -36,7 +36,6 @@ import { AdminAuthGuard } from './admin-auth-guard.service';
     AdminStaffComponent,
     LoginComponent,
     UserRegistrationComponent,
-    AdminUsersComponent,
     AboutStaffComponent,
   
     
@@ -61,7 +60,7 @@ import { AdminAuthGuard } from './admin-auth-guard.service';
       {path: 'registration', component: UserRegistrationComponent },
      
      
-      {path: 'admin/patients', component: AdminUsersComponent, canActivate: [AuthGuard, AdminAuthGuard] },
+      
       {path: 'admin/staff', component: AdminStaffComponent, canActivate: [AuthGuard, AdminAuthGuard] },
 
     ])
