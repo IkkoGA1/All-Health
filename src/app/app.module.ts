@@ -3,7 +3,7 @@ import { NgModule } from '@angular/core';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { AngularFireModule } from '@angular/fire';
 import { RouterModule } from '@angular/router';
-import { FormsModule } from '@angular/forms';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { AngularFireDatabaseModule } from '@angular/fire/database';
 import { AngularFireAuthModule } from '@angular/fire/auth';
 import { AppRoutingModule } from './app-routing.module';
@@ -13,13 +13,16 @@ import { BsNavbarComponent } from './bs-navbar/bs-navbar.component';
 import { HomeComponent } from './home/home.component';
 import { AboutComponent } from './about/about.component';
 import { LoginComponent } from './login/login.component';
-import { PatientMyportalComponent } from './patient/patient-myportal/patient-myportal.component';
 import { AdminStaffComponent } from './admin/admin-staff/admin-staff.component';
-import { AdminPatientsComponent } from './admin/admin-patients/admin-patients.component';
-import { PatientHomeComponent } from './patient/patient-home/patient-home.component';
-import { PatientRegistrationComponent } from './patient/patient-registration/patient-registration.component';
+import { AdminPatientsComponent as AdminUsersComponent } from './admin/admin-patients/admin-patients.component';
+import { PatientRegistrationComponent as UserRegistrationComponent } from './user/user-registration/patient-registration.component';
 import { AboutStaffComponent } from './about/about-staff/about-staff.component';
 import { AboutFaqComponent } from './about/about-faq/about-faq.component';
+import { AuthService } from './auth.service';
+import { CommonModule } from '@angular/common';
+import { AuthGuardService as AuthGuard } from './auth-guard.service';
+import { UserService } from './user.service';
+import { AdminAuthGuard } from './admin-auth-guard.service';
 
 
 
@@ -33,17 +36,20 @@ import { AboutFaqComponent } from './about/about-faq/about-faq.component';
     AboutFaqComponent,
     AdminStaffComponent,
     LoginComponent,
-    AdminPatientsComponent,
+    UserRegistrationComponent,
+    AdminUsersComponent,
     AboutStaffComponent,
+  
     
   ],
   imports: [
-  
     BrowserModule,
     AppRoutingModule,
     AngularFireModule.initializeApp(environment.firebase),
     AngularFireDatabaseModule,
     NgbModule,
+    CommonModule,
+    ReactiveFormsModule,
     FormsModule,
     AngularFireAuthModule,
     RouterModule.forRoot([
@@ -53,16 +59,21 @@ import { AboutFaqComponent } from './about/about-faq/about-faq.component';
       {path: 'about/faq', component: AboutFaqComponent },
       {path: 'login', component: LoginComponent },
 
-      {path: 'registration', component: PatientRegistrationComponent },
-      {path: 'my/portal', component: PatientMyportalComponent },
-      {path: 'patient/home', component: PatientHomeComponent },
-
-      {path: 'admin/patients', component: AdminPatientsComponent },
-      {path: 'admin/staff', component: AdminStaffComponent },
+      {path: 'registration', component: UserRegistrationComponent },
+     
+     
+      {path: 'admin/patients', component: AdminUsersComponent, canActivate: [AuthGuard, AdminAuthGuard] },
+      {path: 'admin/staff', component: AdminStaffComponent, canActivate: [AuthGuard, AdminAuthGuard] },
 
     ])
   ],
-  providers: [],
+  providers: [
+    AuthService,
+    AuthGuard,
+    AdminAuthGuard,
+    UserService,
+    
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

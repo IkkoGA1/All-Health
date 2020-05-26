@@ -1,5 +1,5 @@
 <nav class="navbar navbar-expand-md navbar-light bg-light fixed-top">
-    <a class="navbar-brand" href="#">All Health</a>
+    <a class="navbar-brand" routerLink="/">All Health</a>
     <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarsExampleDefault"
         aria-controls="navbarsExampleDefault" aria-expanded="false" aria-label="Toggle navigation">
         <span class="navbar-toggler-icon"></span>
@@ -8,7 +8,7 @@
     <div class="collapse navbar-collapse" id="navbarsExampleDefault">
         <ul class="navbar-nav mr-auto">
             <li class="nav-item active">
-                <a class="nav-link" routerLink="/registration">Register <span class="sr-only">(current)</span></a>
+                <a *ngIf="!appUser" class="nav-link" routerLink="/registration">Register <span class="sr-only">(current)</span></a>
             </li>
             <li class="nav-item">
                 <a class="nav-link" routerLink="/about">About </a>
@@ -19,19 +19,21 @@
             <li class="nav-item">
                 <a class="nav-link" routerLink="/about/faq">FAQ's </a>
             </li>
-            <ng-template #anonymousUser>
+             <ng-template #anonymousUser>
                 <li class="nav-item">
                     <a class="nav-link" routerLink="/login">Login </a>
                 </li>
-            </ng-template>
-            <li ngbDropdown *ngIf="user$ | async as user; else anonymousUser" class="nav-item dropdown">
+            </ng-template> 
+            <li ngbDropdown *ngIf="appUser && appUser.isEmailVerified; else anonymousUser" class="nav-item dropdown">
                 <a ngbDropdownToggle class="nav-link dropdown-toggle"  id="dropdown01" data-toggle="dropdown" aria-haspopup="true"
-                    aria-expanded="false">{{ user.displayName  }}</a>
+                    aria-expanded="false">Welcome, {{ appUser.email  }}</a>
                 <div ngbDropdownMenu class="dropdown-menu" aria-labelledby="dropdown01">
-                    <a  class="dropdown-item" routerLink="patient/home">Patient Home</a>
-                    <a class="dropdown-item" routerLink="my/portal">Patient Info Center</a>
-                    <a class="dropdown-item" routerLink="/admin/patients">Patient Management</a>
-                    <a class="dropdown-item" routerLink="/admin/staff">Staff Management</a>
+                    <a class="dropdown-item" routerLink="patient/home">Patient Home</a>
+                    <a class="dropdown-item" routerLink="patient/my-portal">Patient Info Center</a>
+                    <ng-container *ngIf="appUser.isAdmin">
+                        <a class="dropdown-item" routerLink="/admin/patients">Patient Management</a>
+                        <a class="dropdown-item" routerLink="/admin/staff">Staff Management</a>
+                    </ng-container>
                     <a class="dropdown-item" (click)="logout()" >Log Out</a>
                 </div>
             </li>
