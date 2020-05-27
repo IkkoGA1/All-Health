@@ -1,6 +1,7 @@
 import { Component } from '@angular/core';
 import { AuthService } from 'src/app/auth.service';
 import { FormBuilder, Validators } from '@angular/forms';
+import { PasswordValidators } from './password.validator';
 
 @Component({
   selector: 'app-registration',
@@ -15,6 +16,8 @@ export class RegistrationComponent  {
       email: ['', Validators.required],
       password: ['', Validators.required],
       confirmPassword: ['', Validators.required],
+    }, {
+      validator: PasswordValidators.passwordsMustMatch
     });
   }
 
