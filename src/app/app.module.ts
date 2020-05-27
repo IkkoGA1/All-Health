@@ -21,7 +21,8 @@ import { CommonModule } from '@angular/common';
 import { AuthGuardService as AuthGuard } from './auth-guard.service';
 import { UserService } from './user.service';
 import { AdminAuthGuard } from './admin-auth-guard.service';
-import { UserRegistrationComponent } from './user/user-registration/user-registration.component';
+import { RegistrationComponent } from './registration/registration.component';
+
 
 
 
@@ -34,9 +35,9 @@ import { UserRegistrationComponent } from './user/user-registration/user-registr
     AboutComponent,
     AboutFaqComponent,
     AdminStaffComponent,
-    UserRegistrationComponent,
     LoginComponent,
     AboutStaffComponent,
+    RegistrationComponent,
   
     
   ],
@@ -56,9 +57,8 @@ import { UserRegistrationComponent } from './user/user-registration/user-registr
       {path: 'about/staff', component: AboutStaffComponent },
       {path: 'about/faq', component: AboutFaqComponent },
       {path: 'login', component: LoginComponent },
-
+      {path: 'registration', component: RegistrationComponent },
       
-      {path: 'user/registration', component: UserRegistrationComponent, canActivate: [AuthGuard]},
      
       
       {path: 'admin/staff', component: AdminStaffComponent, canActivate: [AuthGuard, AdminAuthGuard] },
