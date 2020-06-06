@@ -9,9 +9,6 @@ import { UserService } from './user.service';
 
 
 
-
-
-
 @Injectable({
   providedIn: 'root'
 })
@@ -50,7 +47,15 @@ export class AuthService {
   }
 
   
-  
+  ForgotPassword(passwordResetEmail: string) {
+    return this.afAuth.sendPasswordResetEmail(passwordResetEmail)
+      .then(() => {
+        window.alert('A password reset link was sent. Please check your inbox');
+        return this.router.navigate(['/login']);
+      }).catch((error) => {
+        window.alert(error)
+      })
+  }
 
   SendVerificationMail() {
     return this.afAuth.currentUser.then(u => u.sendEmailVerification())
@@ -72,8 +77,6 @@ export class AuthService {
       })
   }
 
-  
-  
   SignInUser(email: string, password: string) {
     let returnUrl = this.route.snapshot.queryParamMap.get('returnUrl') || '/';
     localStorage.setItem('returnUrl', returnUrl);
@@ -89,7 +92,7 @@ export class AuthService {
         }
       }).catch((error) => {
         window.alert(error.message);
-        window.alert('Looks like you are not a registered user. Please register');
+        window.alert("Please register, if you haven't already");
       })
   }
 

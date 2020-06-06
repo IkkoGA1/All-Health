@@ -1,32 +1,31 @@
-<form [formGroup]="regForm" (submit)="signUpUser()">
-    <div class="form-group">
-        <label for="">Email</label>
-        <input formControlName="email" type="email" class="form-control">
-        <div 
-         *ngIf="email.touched && email.invalid"
-          class="alert alert-danger">
-          <div *ngIf="email.errors.required">A email address is required.</div>
-        </div>
-    </div>
-    <div class="form-group">
-        <label for="">Password</label>
-        <input formControlName="password" type="password" class="form-control">
-        <div 
-         *ngIf="password.touched && password.invalid"
-          class="alert alert-danger">
-          <div *ngIf="password.errors.required">A password is required.</div>
-        </div>
-    </div>
-    <div class="form-group">
-        <label for="">Confirm Password</label>
-        <input formControlName="confirmPassword" type="password" class="form-control">
-        <div 
-         *ngIf="confirmPassword.touched && confirmPassword.invalid"
-          class="alert alert-danger">
-          <div *ngIf="confirmPassword.errors.required">You must confirm your password</div>
-        </div>
-        <div *ngIf="confirmPassword.valid && regForm.invalid && regForm.errors.passwordsMustMatch" class="alert alert-danger"> Your Passwords aren't matching</div>
-    </div>
-    <button class="btn btn-primary"[disabled]="regForm.invalid || confirmPassword.invalid">Register</button>   
+<div class="card login-card">
+    <h5 class="card-header">Register</h5>
+    <div class="card-body">
+        <form [formGroup]="regForm" (submit)="signUpUser()">
+            <div class="form-group">
+                <label for="">Email</label>
+                <input formControlName="email" type="email" class="form-control">
+                <div *ngIf="email.touched && email.invalid" class="alert alert-danger">
+                    <div *ngIf="email.errors.required">A email address is required.</div>
+                </div>
+            </div>
+            <div class="form-group">
+                <label for="">Password</label>
+                <input formControlName="password" type="password" class="form-control">
+                <div *ngIf="password.touched && password.invalid" class="alert alert-danger">
+                    <div *ngIf="password.errors.required">A password is required.</div>
+                </div>
+            </div>
+            <div class="form-group">
+                <label for="">Confirm Password</label>
+                <input formControlName="confirmPassword" type="password" class="form-control">
+                <div *ngIf="confirmPassword.touched && confirmPassword.invalid" class="alert alert-danger">
+                    <div *ngIf="confirmPassword.errors.required">You must confirm your password</div>
+                </div>
+                <div *ngIf="confirmPassword.valid && regForm.invalid && regForm.errors.passwordsMustMatch"
+                    class="alert alert-danger"> Your Passwords aren't matching</div>
+            </div>
+            <button class="btn btn-primary" [disabled]="regForm.invalid || confirmPassword.invalid">Register</button>
 
-</form>
+        </form>
+    </div>

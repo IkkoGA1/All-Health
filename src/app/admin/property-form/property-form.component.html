@@ -1,0 +1,116 @@
+<div class="row">
+    <div class="col-md-6">
+        <form #form="ngForm" (ngSubmit)="save(form.value)">
+            <div class="form-group">
+                <label for="address">Address</label>
+                <input #address="ngModel" [(ngModel)]="property.address" name="address" id="address" type="text" class="form-control" required>
+                <div class="alert alert-danger" *ngIf="address.touched && address.invalid">
+                    Address is required.
+                </div>
+            </div>
+            <div class="input-group-mb-3">
+                <label for="">Rent</label>
+                <div class="input-group-prepend">
+                    <span class="input-group-text">$</span>
+                    <input #monthlyRent="ngModel" [(ngModel)]="property.monthlyRent" name="monthlyRent" type="text" class="form-control" aria-label="Amount (to the nearest dollar)" required [min]="500">
+                    <div class="input-group-append">
+                        <span class="input-group-text">.00</span>
+                    </div>
+                </div>
+                <div class="alert alert-danger" *ngIf="monthlyRent.touched && monthlyRent.invalid">
+                    <div *ngIf="monthlyRent.errors.required">The monthly rent amount is required.</div>
+                    <div *ngIf="monthlyRent.errors?.min">The monthly rent must be greater than $500 (USD).</div>
+                </div>
+            </div>
+            <div class="input-group-mb-3">
+                <label for="">Purchase Price</label>
+                <div class="input-group-prepend">
+                    <span class="input-group-text">$</span>
+                    <input #purchasePrice="ngModel" [(ngModel)]="property.purchasePrice" name="purchasePrice" type="text" class="form-control" aria-label="Amount (to the nearest dollar)" required [min]="0">
+                    <div class="input-group-append">
+                        <span class="input-group-text">.00</span>
+                    </div>
+                </div>
+                <div class="alert alert-danger" *ngIf="purchasePrice.touched && purchasePrice.invalid">
+                    <div *ngIf="purchasePrice.errors.required">The purchase price is required.</div>
+                    <div *ngIf="purchasePrice.errors?.min">The purchase price must be more than $0 (USD).</div>
+                </div>
+            </div>
+            <div class="form-group">
+                <label for="purchaseDate">Purchase Date</label>
+                <input #purchaseDate="ngModel" [(ngModel)]="property.purchaseDate" name="purchaseDate" id="purchaseDate" type="text" class="form-control" required>
+                <div class="alert alert-danger" *ngIf="purchaseDate.touched && purchaseDate.invalid">
+                    Please enter a valid purchase date.
+                </div>
+            </div>
+            
+            <div class="form-group">
+                <label for="city">City</label>
+                <input #city="ngModel" [(ngModel)]="property.city" name="city" id="city" type="text" class="form-control" required>
+                <div class="alert alert-danger" *ngIf="city.touched && city.invalid">
+                    Please enter the city of the property.
+                </div>
+            </div>
+            <div class="form-group">
+                <label for="state">State</label>
+                <input #state="ngModel" [(ngModel)]="property.state" name="state" id="state" type="text" class="form-control" required>
+                <div class="alert alert-danger" *ngIf="state.touched && state.invalid">
+                    Please enter the state for the property.
+                </div>
+            </div>
+            <div class="form-group">
+                <label for="zipcode">Zipcode</label>
+                <input #zipcode="ngModel" [(ngModel)]="property.zipcode" name="zipcode" id="zipcode" type="text" class="form-control" required>
+                <div class="alert alert-danger" *ngIf="zipcode.touched && zipcode.invalid">
+                    A valid zip code is required.
+                </div>
+            </div>
+            <div class="form-group">
+                <label for="category">Home Category</label>
+                <select #category="ngModel" [(ngModel)]="property.category" name="category" id="category" class="form-control" required>
+                    <option value=""></option>
+                    <option *ngFor="let c of categories$ | async" [value]="c.key">
+                        {{ c.payload.val().name }}
+                    </option>
+                </select>
+                <div class="alert alert-danger" *ngIf="category.touched && category.invalid">
+                    Please select a home category
+                </div>
+            </div>
+            <div class="form-group">
+                <label for="rentalStatus">Rental Status</label>
+                <select #rentalStatus="ngModel" [(ngModel)]="property.rentalStatus" name="rentalStatus" id="rentalStatus" class="form-control" required>
+                    <option value=""></option>
+                    <option *ngFor="let s of status$ | async" [value]="s.key">
+                        {{ s.payload.val().name }}
+                    </option>
+                </select>
+                <div class="alert alert-danger" *ngIf="rentalStatus.touched && rentalStatus.invalid">
+                    Please select the status of the rental
+                </div>
+            </div>
+            <div class="form-group">
+                <label for="imageUrl">Image URL</label>
+                <input #imageUrl="ngModel" [(ngModel)]="property.imageUrl" name="imageUrl" id="imageUrl" type="text" class="form-control" required url>
+                <div class="alert alert-danger" *ngIf="imageUrl.touched && imageUrl.invalid">
+                    <div *ngIf="imageUrl.errors.required">A image URL is required.</div>
+                    <div *ngIf="imageUrl.errors?.url">A valid URL is required.</div>
+                    
+                </div>
+            </div>
+            <button class="btn btn-primary">Save</button>
+            <button type="button" (click)="delete()" style="margin:5px" class="btn btn-danger">Delete</button>
+        </form>
+    </div>
+    <div class="col-md-6">
+        <div class="card" style="width: 18rem;">
+            <img class="card-img-top" [src]="property.imageUrl" *ngIf="property.imageUrl">
+            <div class="card-body">
+                <h5 class="card-title">{{ property.address }}</h5>
+                <p class="card-text">{{ property.monthlyRent | currency: 'USD' }}</p>
+                <p class="card-text">{{ property.category }}</p>
+            </div>
+        </div>
+    </div>
+</div>
+

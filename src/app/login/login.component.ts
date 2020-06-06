@@ -1,7 +1,6 @@
 import { Component } from '@angular/core';
 import { AuthService } from './../auth.service';
-import { UserService } from './../user.service';
-import { Router } from '@angular/router';
+
 
 
 @Component({
@@ -15,9 +14,7 @@ export class LoginComponent  {
  emailVerified: boolean;
  form: any;
  
-  constructor(
-    
-    public auth: AuthService) { }
+  constructor(public auth: AuthService) { }
 
   login() {
     this.auth.login();
@@ -30,4 +27,6 @@ export class LoginComponent  {
   logout() {
     this.auth.logout();
   }
+
+  
 } 

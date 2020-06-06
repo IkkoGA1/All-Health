@@ -22,10 +22,14 @@ import { AuthGuardService as AuthGuard } from './auth-guard.service';
 import { UserService } from './user.service';
 import { AdminAuthGuard } from './admin-auth-guard.service';
 import { RegistrationComponent } from './registration/registration.component';
-
-
-
-
+import { ForgotPasswordComponent } from './forgot-password/forgot-password.component';
+import { PropertiesComponent } from './admin/properties/properties.component';
+import { PropertyFormComponent } from './admin/property-form/property-form.component';
+import { CategoryService } from './category.service';
+import { StatusService } from './status.service';
+import { PropertyService } from './property.service';
+import { CustomFormsModule } from 'ngx-custom-validators';
+import { DataTableModule } from 'angular5-data-table';
 
 @NgModule({
   declarations: [
@@ -38,6 +42,10 @@ import { RegistrationComponent } from './registration/registration.component';
     LoginComponent,
     AboutStaffComponent,
     RegistrationComponent,
+    ForgotPasswordComponent,
+    PropertiesComponent,
+    PropertyFormComponent,
+   
   
     
   ],
@@ -47,6 +55,8 @@ import { RegistrationComponent } from './registration/registration.component';
     AngularFireModule.initializeApp(environment.firebase),
     AngularFireDatabaseModule,
     NgbModule,
+    DataTableModule.forRoot(),
+    CustomFormsModule,
     CommonModule,
     ReactiveFormsModule,
     FormsModule,
@@ -58,11 +68,28 @@ import { RegistrationComponent } from './registration/registration.component';
       {path: 'about/faq', component: AboutFaqComponent },
       {path: 'login', component: LoginComponent },
       {path: 'registration', component: RegistrationComponent },
-      
-     
-      
-      {path: 'admin/staff', component: AdminStaffComponent, canActivate: [AuthGuard, AdminAuthGuard] },
+      {path: 'forgot-password', component: ForgotPasswordComponent },
+      {
+        path: 'admin/properties/new',
+        component: PropertyFormComponent,
+        canActivate: [AuthGuard, AdminAuthGuard]
+      },
+      {
+        path: 'admin/properties/:id',
+        component: PropertyFormComponent,
+        canActivate: [AuthGuard, AdminAuthGuard]
+      },
+      {
+        path: 'admin/staff',
+        component: AdminStaffComponent,
+        canActivate: [AuthGuard, AdminAuthGuard]
+      },
 
+      {
+        path: 'admin/properties',
+        component: PropertiesComponent,
+        canActivate: [AuthGuard, AdminAuthGuard]
+      },
     ])
   ],
   providers: [
@@ -70,6 +97,9 @@ import { RegistrationComponent } from './registration/registration.component';
     AuthGuard,
     AdminAuthGuard,
     UserService,
+    CategoryService,
+    StatusService,
+    PropertyService,
     
   ],
   bootstrap: [AppComponent]

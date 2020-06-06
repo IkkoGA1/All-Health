@@ -1,0 +1,68 @@
+<p>
+    <a routerLink="/admin/properties/new" class="btn btn-primary">Add New Property</a>
+</p>
+<p>
+    <input 
+     #query
+     (keyup)="filter(query.value)"   
+     type="text" class="form-control" placeholder="Search">
+</p>
+<data-table [items]="items" [itemCount]="itemCount" (reload)="reloadItems($event)">
+
+    <data-table-column [property]="'address'" [header]="'Address'" [sortable]="true" [resizable]="true"
+        [visible]="true">
+
+    </data-table-column>
+
+    <data-table-column [property]="'monthlyRent'" [header]="'Rent'" [sortable]="true" [resizable]="true"
+        [visible]="true">
+        <ng-template #dataTableCell let-item="item">
+            {{ item.monthlyRent | currency: 'USD':'$' }}
+        </ng-template>
+    </data-table-column>
+
+    <data-table-column [property]="'purchasePrice'" [header]="'Purchase Price'" [sortable]="true" [resizable]="true"
+        [visible]="true">
+        <ng-template #dataTableCell let item="item">
+            {{ item.purchasePrice | currency: 'USD':'$' }}
+        </ng-template>
+    </data-table-column>
+
+    <data-table-column [property]="'purchaseDate'" [header]="'Purchase Date'" [sortable]="true" [resizable]="true"
+        [visible]="true">
+
+    </data-table-column>
+
+    <data-table-column [property]="'city'" [header]="'City'" [sortable]="true" [resizable]="true" [visible]="true">
+
+    </data-table-column>
+
+    <data-table-column [property]="'state'" [header]="'State'" [sortable]="true" [resizable]="true" [visible]="true">
+
+    </data-table-column>
+
+    <data-table-column [property]="'zipcode'" [header]="'Zipcode'" [sortable]="true" [resizable]="true"
+        [visible]="true">
+
+    </data-table-column>
+
+    <data-table-column [property]="'category'" [header]="'Home Category'" [sortable]="true" [resizable]="true"
+        [visible]="true">
+
+    </data-table-column>
+
+    <data-table-column [property]="'rentalStatus'" [header]="'Rental Status'" [sortable]="true" [resizable]="true"
+        [visible]="true">
+
+    </data-table-column>
+    <data-table-column>
+        <ng-template #dataTableCell let item="item">
+            <a [routerLink]="['/admin/properties/', item.key]">Edit</a>
+        </ng-template>
+    </data-table-column>
+</data-table>
+
+
+
+
+
