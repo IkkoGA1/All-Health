@@ -35,6 +35,7 @@ export class PropertyFormComponent implements OnInit {
 
   save(property) {
     if (this.id) this.propertyService.update(this.id, property);
+
     else this.propertyService.create(property);
     this.router.navigate(['/admin/properties']);
   }
@@ -46,7 +47,9 @@ export class PropertyFormComponent implements OnInit {
     this.router.navigate(['/admin/properties']);
     
   }
-  
+  filter(query) {
+    console.log(query.split('').filter(query));
+  }
   ngOnInit() {
   }
 

@@ -17,16 +17,17 @@ export class PropertyService {
 
   getAll(): Observable<Property[]> {
     return this.db.list('/properties').snapshotChanges()
-    .pipe(
-      map(properties => 
-        properties.map( p => ({
-          key: p.payload.key,...p.payload.val() as Property }))
-      )
-    );
+      .pipe(
+        map(properties =>
+          properties.map(p => ({
+            key: p.payload.key, ...p.payload.val() as Property
+          }))
+        )
+      );
   }
 
   get(productId) {
-    return this.db.object('/products/' + productId);  
+    return this.db.object('/properties/' + productId);  
   }
 
   update(propertyId, property) {

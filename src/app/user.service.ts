@@ -3,6 +3,8 @@ import { AngularFireDatabase } from '@angular/fire/database';
 import * as firebase from 'firebase';
 import { Observable } from 'rxjs/Observable';
 import {  AngularFireAuth } from '@angular/fire/auth';
+import { AppUser } from './models/app.user';
+import { map } from 'rxjs/operators';
 
 
 
@@ -26,6 +28,17 @@ export class UserService {
   }
   get(uid: string): Observable<any> {
     return this.db.object('/users/' + uid).valueChanges();
+  }
+  
+  getAll(): Observable<AppUser[]> {
+    return this.db.list('/users').snapshotChanges()
+      .pipe(
+        map(users =>
+          users.map(u => ({
+            key: u.payload.key, ...u.payload.val() as AppUser
+          }))
+        )
+      );
   }
   
   
