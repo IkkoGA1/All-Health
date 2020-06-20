@@ -27,6 +27,7 @@
                             <h5 class="card-title">{{ p.address }}</h5>
                             <p class="card-text"> Rent: {{ p.rent | currency:'USD':'$'}}</p>
                             <p class="card-text"> {{ p.city }}, {{ p.state }} </p>
+                            <p class="card-text"> status: {{ p.rentalStatus }}</p>
                         </div>
                     </div>
                 </div>
@@ -35,5 +36,6 @@
         </div>
     </div>
 </div>
+
 
 

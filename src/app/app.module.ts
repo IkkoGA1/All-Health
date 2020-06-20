@@ -20,7 +20,6 @@ import { UserService } from './user.service';
 import { AdminAuthGuard } from './admin-auth-guard.service';
 import { RegistrationComponent } from './registration/registration.component';
 import { ForgotPasswordComponent } from './forgot-password/forgot-password.component';
-import { PropertiesComponent } from './admin/admin-properties/properties.component';
 import { PropertyFormComponent } from './admin/property-form/property-form.component';
 import { CategoryService } from './category.service';
 import { StatusService } from './status.service';
@@ -28,6 +27,8 @@ import { PropertyService } from './property.service';
 import { CustomFormsModule } from 'ngx-custom-validators';
 import { DataTableModule } from 'angular5-data-table';
 import { AuthGuardService as AuthGuard } from './auth-guard.service';
+
+import { PropertiesComponent } from './properties/properties.component';
 
 
 @NgModule({
@@ -40,12 +41,9 @@ import { AuthGuardService as AuthGuard } from './auth-guard.service';
     LoginComponent,
     RegistrationComponent,
     ForgotPasswordComponent,
+    AdminPropertiesComponent,
     PropertiesComponent,
     PropertyFormComponent,
-    
-   
-  
-    
   ],
   imports: [
     BrowserModule,
@@ -60,7 +58,7 @@ import { AuthGuardService as AuthGuard } from './auth-guard.service';
     ReactiveFormsModule,
     AngularFireAuthModule,
     RouterModule.forRoot([
-      {path: '', component: HomeComponent },
+      {path: '', component: PropertiesComponent },
       {path: 'about', component: AboutComponent },
       {path: 'about/faq', component: AboutFaqComponent },
       {path: 'login', component: LoginComponent },

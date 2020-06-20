@@ -8,7 +8,10 @@ export class StatusService {
 
   constructor(private db: AngularFireDatabase) { }
 
-  getStatus(){
+  getAll(){
     return this.db.list('/status', ref => ref.orderByChild('name')).snapshotChanges();
+  }
+  getAvailable() {
+    return this.db.list('status', ref => ref.equalTo('available')).snapshotChanges();
   }
 }

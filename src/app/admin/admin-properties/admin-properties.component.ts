@@ -6,9 +6,9 @@ import { DataTableResource } from 'angular5-data-table';
 
 
 @Component({
-  selector: 'app-properties',
-  templateUrl: './properties.component.html',
-  styleUrls: ['./properties.component.css']
+  selector: 'app-admin-properties',
+  templateUrl: './admin-properties.component.html',
+  styleUrls: ['./admin-properties.component.css']
 })
 export class PropertiesComponent implements OnInit, OnDestroy {
   properties: Property[];
@@ -24,7 +24,7 @@ export class PropertiesComponent implements OnInit, OnDestroy {
        this.properties = properties;
        this.initializeTable(properties);
     });
-      
+
   }
   ngOnDestroy() {
     this.subscription.unsubscribe();

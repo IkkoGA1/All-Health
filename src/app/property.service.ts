@@ -3,13 +3,15 @@ import { AngularFireDatabase } from '@angular/fire/database';
 import { Observable } from 'rxjs/Observable';
 import { Property } from './models/property';
 import { map } from 'rxjs/operators';
+import { StatusService } from 'src/app/status.service';
+
 
 @Injectable({
   providedIn: 'root'
 })
 export class PropertyService {
 
-  constructor(private db: AngularFireDatabase) { }
+  constructor(private db: AngularFireDatabase, private statusService: StatusService) { }
 
   create(property) {
     return this.db.list('/properties').push(property);
@@ -26,6 +28,32 @@ export class PropertyService {
       );
   }
 
+  getAvailable(): Observable<Property[]> {
+    return this.db.list('/properties', ref => ref.orderByChild
+    ('rentalStatus').equalTo('available')).snapshotChanges()
+    .pipe(
+      map(properties =>
+        properties.map(p => ({
+          key: p.payload.key, ...p.payload.val() as Property
+        }))
+      )
+    );
+    
+  }
+
+  getState(): Observable<Property[]> {
+    return this.db.list('/properties', ref => ref.orderByChild
+    ('state')).snapshotChanges()
+    .pipe(
+      map(properties =>
+        properties.map(p => ({
+          key: p.payload.key, ...p.payload.val() as Property
+        }))
+      )
+    );
+    
+  }
+
   get(productId) {
     return this.db.object('/properties/' + productId);  
   }
@@ -37,4 +65,6 @@ export class PropertyService {
   delete(productId) {
     return this.db.object('/properties/' + productId).remove();
   }
+
+  
 }

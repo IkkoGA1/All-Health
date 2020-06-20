@@ -23,8 +23,8 @@ export class PropertyFormComponent implements OnInit {
     private categoryService: CategoryService, 
     private statusService: StatusService, 
     private propertyService: PropertyService) { 
-    this.categories$ = categoryService.getCategories();
-    this.status$ = statusService.getStatus();
+    this.categories$ = categoryService.getAll();
+    this.status$ = statusService.getAll();
 
 
     this.id = this.route.snapshot.paramMap.get('id');

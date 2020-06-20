@@ -1,18 +1,16 @@
 import { Component, OnInit } from '@angular/core';
-import { PropertyService } from './../property.service';
-import { CategoryService } from './../category.service';
-import { ActivatedRoute } from '@angular/router';
 import { Property } from '../models/property';
-import 'rxjs/add/operator/switchMap';
-
-
+import { ActivatedRoute } from '@angular/router';
+import { PropertyService } from '../property.service';
+import { CategoryService } from '../category.service';
 
 @Component({
-  selector: 'app-home',
-  templateUrl: './home.component.html',
-  styleUrls: ['./home.component.css']
+  selector: 'app-properties',
+  templateUrl: './properties.component.html',
+  styleUrls: ['./properties.component.css']
 })
-export class HomeComponent implements OnInit {
+export class PropertiesComponent implements OnInit {
+
   properties: Property[] = [];
   filteredProperties: Property[] = [];
   categories$;
@@ -20,6 +18,7 @@ export class HomeComponent implements OnInit {
   
 
   constructor(
+   
     private route: ActivatedRoute,
     private propertyService: PropertyService,  
     private categoryService: CategoryService) {

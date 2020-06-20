@@ -2,6 +2,7 @@ import { Component } from '@angular/core';
 import { AuthService } from './../auth.service';
 import { AppUser } from './../models/app.user';
 import { auth } from 'firebase';
+import {Router } from '@angular/router';
 
 
 
@@ -14,7 +15,7 @@ export class BsNavbarComponent {
   appUser: AppUser;
  
   
-  constructor(private auth: AuthService) {
+  constructor(private auth: AuthService, private router: Router) {
     auth.appUser$.subscribe(appUser => this.appUser = appUser);
     
   }
@@ -22,6 +23,7 @@ export class BsNavbarComponent {
  
   logout() {
     this.auth.logout();
+    
   }
   
   

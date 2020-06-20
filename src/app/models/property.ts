@@ -9,4 +9,5 @@ export interface Property {
     category: string;
     rentalStatus: string;
     imageUrl: string; 
+    
 }

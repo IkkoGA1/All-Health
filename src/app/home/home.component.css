@@ -1,0 +1,9 @@
+.card-img {
+    background-position: center;
+}
+
+.card {
+    height: 30rem;
+    padding-top: 10px ;
+    padding-bottom: 5px;
+}
