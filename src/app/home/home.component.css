@@ -1,9 +1,17 @@
-.card-img {
-    background-position: center;
-}
 
-.card {
-    height: 30rem;
-    padding-top: 10px ;
-    padding-bottom: 5px;
+.card-img-top {
+    width: 100%;
+    height: 15vw;
+    object-fit: cover;
+
+}
+.card-deck {
+    padding-right: 1rem;
+    padding-bottom: 1rem;
+}
+.sticky-top {
+    top: 80px;
+}
+.card-footer {
+    border: hidden;
 }

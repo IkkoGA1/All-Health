@@ -1,0 +1,49 @@
+<div class="row">
+    <div class="col-md-6">
+        <form #f="ngForm" (ngSubmit)="save(f.value)">
+            <h1>Rental Application</h1>
+            <div class="form-group">
+                <label for="name">Name</label>
+                <input #name="ngModel" [(ngModel)]="rental.name" name="name" id="name" type="text" class="form-control" required>
+                <div class="alert alert-danger" *ngIf="name.touched && name.invalid">
+                    Name is required.
+                </div>
+            </div>
+            <div class="form-group">
+                <label for="address">Current Address</label>
+                <input #address="ngModel" [(ngModel)]="rental.address" name="address" id="address" type="text"
+                    class="form-control" required>
+                <div class="alert alert-danger" *ngIf="address.touched && address.invalid">
+                    Address is required
+                </div>
+            </div>
+            <label for="">Monthly Income</label>
+            <div class="input-group mb-3">
+                <div class="input-group-prepend">
+                    <span class="input-group-text">$</span>
+                </div>
+                <input #income="ngModel" [(ngModel)]="rental.income" name="income" id="income" type="number" class="form-control"
+                    required [min]="0">
+            </div>
+            <div class="alert alert-danger" *ngIf="income.touched && income.invalid">
+                <div *ngIf="income.errors.required">Income is required.</div>
+                <div *ngIf="income.errors?.min">Your monthly income must be more than $0 (USD).</div>
+            </div>
+            <div class="form-group">
+                <label for="email">Email Address</label>
+                <input #email="ngModel" [(ngModel)]="rental.email" name="email" id="email" type="text" class="form-control"
+                    required>
+                <div class="alert alert-danger" *ngIf="email.touched && email.invalid">
+                    Email is required
+                </div>
+            </div>
+            <div class="form-group">
+                <label for="phone">Phone Number</label>
+                <input #phone="ngModel" [(ngModel)]="rental.phone" name="phone" id="phone" type="text" class="form-control">
+            </div>
+            <div>
+                <button class="btn btn-primary" [disabled]="f.invalid" >Submit</button>
+            </div>
+        </form>
+</div>
+

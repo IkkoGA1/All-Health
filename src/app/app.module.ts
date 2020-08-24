@@ -13,7 +13,6 @@ import { BsNavbarComponent } from './bs-navbar/bs-navbar.component';
 import { HomeComponent } from './home/home.component';
 import { AboutComponent } from './about/about.component';
 import { LoginComponent } from './login/login.component';
-import { AboutFaqComponent } from './about/about-faq/about-faq.component';
 import { AuthService } from './auth.service';
 import { CommonModule } from '@angular/common';
 import { UserService } from './user.service';
@@ -27,8 +26,11 @@ import { PropertyService } from './property.service';
 import { CustomFormsModule } from 'ngx-custom-validators';
 import { DataTableModule } from 'angular5-data-table';
 import { AuthGuardService as AuthGuard } from './auth-guard.service';
+import { AdminPropertiesComponent } from './admin/admin-properties/admin-properties.component';
+import { RentComponent } from './rent/rent.component';
+import { RentalService } from './rental-cart.service';
+import { StatesService } from './states.service';
 
-import { PropertiesComponent } from './properties/properties.component';
 
 
 @NgModule({
@@ -37,13 +39,13 @@ import { PropertiesComponent } from './properties/properties.component';
     BsNavbarComponent,
     HomeComponent,
     AboutComponent,
-    AboutFaqComponent,
     LoginComponent,
     RegistrationComponent,
     ForgotPasswordComponent,
     AdminPropertiesComponent,
-    PropertiesComponent,
     PropertyFormComponent,
+    RentComponent,
+    
   ],
   imports: [
     BrowserModule,
@@ -58,12 +60,13 @@ import { PropertiesComponent } from './properties/properties.component';
     ReactiveFormsModule,
     AngularFireAuthModule,
     RouterModule.forRoot([
-      {path: '', component: PropertiesComponent },
+      {path: '', component: HomeComponent },
       {path: 'about', component: AboutComponent },
-      {path: 'about/faq', component: AboutFaqComponent },
       {path: 'login', component: LoginComponent },
+      {path: 'rent', component: RentComponent },
       {path: 'registration', component: RegistrationComponent },
       {path: 'forgot-password', component: ForgotPasswordComponent },
+
       {
         path: 'admin/properties/new',
         component: PropertyFormComponent,
@@ -76,7 +79,7 @@ import { PropertiesComponent } from './properties/properties.component';
       },
       {
         path: 'admin/properties',
-        component: PropertiesComponent,
+        component: AdminPropertiesComponent,
         canActivate: [AuthGuard, AdminAuthGuard]
       },
     ])
@@ -89,6 +92,8 @@ import { PropertiesComponent } from './properties/properties.component';
     CategoryService,
     StatusService,
     PropertyService,
+    RentalService,
+    StatesService,
     
   ],
   bootstrap: [AppComponent]

@@ -1,8 +1,11 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { AuthService } from './../auth.service';
 import { AppUser } from './../models/app.user';
 import { auth } from 'firebase';
 import {Router } from '@angular/router';
+import { RentalCart } from '../models/rental-cart';
+import { Observable } from 'rxjs/Observable';
+import { RentalService } from './../rental-cart.service';
 
 
 
@@ -11,13 +14,18 @@ import {Router } from '@angular/router';
   templateUrl: './bs-navbar.component.html',
   styleUrls: ['./bs-navbar.component.css']
 })
-export class BsNavbarComponent {
+export class BsNavbarComponent implements OnInit {
   appUser: AppUser;
- 
+  cart$: Observable<RentalCart>
   
-  constructor(private auth: AuthService, private router: Router) {
-    auth.appUser$.subscribe(appUser => this.appUser = appUser);
+  constructor(private auth: AuthService, private router: Router, private rentalService: RentalService) {
     
+
+    
+  }
+  async ngOnInit() {
+    this.auth.appUser$.subscribe(appUser => this.appUser = appUser);
+    this.cart$ = await this.rentalService.getRental();
   }
 
  

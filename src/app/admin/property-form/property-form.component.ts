@@ -4,6 +4,7 @@ import { StatusService } from 'src/app/status.service';
 import { PropertyService } from './../../property.service';
 import { Router, ActivatedRoute } from '@angular/router';
 import { take } from 'rxjs/operators';
+import { StatesService } from './../../states.service';
 
 
 @Component({
@@ -16,15 +17,18 @@ export class PropertyFormComponent implements OnInit {
   status$;
   property: any = {};
   id;
+  states$;
 
   constructor(
     private router: Router,
     private route: ActivatedRoute,
     private categoryService: CategoryService, 
+    private stateService: StatesService,
     private statusService: StatusService, 
     private propertyService: PropertyService) { 
     this.categories$ = categoryService.getAll();
     this.status$ = statusService.getAll();
+    this.states$ = stateService.getAllStates();
 
 
     this.id = this.route.snapshot.paramMap.get('id');

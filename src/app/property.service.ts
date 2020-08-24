@@ -3,7 +3,7 @@ import { AngularFireDatabase } from '@angular/fire/database';
 import { Observable } from 'rxjs/Observable';
 import { Property } from './models/property';
 import { map } from 'rxjs/operators';
-import { StatusService } from 'src/app/status.service';
+
 
 
 @Injectable({
@@ -11,7 +11,7 @@ import { StatusService } from 'src/app/status.service';
 })
 export class PropertyService {
 
-  constructor(private db: AngularFireDatabase, private statusService: StatusService) { }
+  constructor(private db: AngularFireDatabase) { }
 
   create(property) {
     return this.db.list('/properties').push(property);
@@ -41,21 +41,8 @@ export class PropertyService {
     
   }
 
-  getState(): Observable<Property[]> {
-    return this.db.list('/properties', ref => ref.orderByChild
-    ('state')).snapshotChanges()
-    .pipe(
-      map(properties =>
-        properties.map(p => ({
-          key: p.payload.key, ...p.payload.val() as Property
-        }))
-      )
-    );
-    
-  }
-
-  get(productId) {
-    return this.db.object('/properties/' + productId);  
+  get(propertyId) {
+    return this.db.object('/properties/' + propertyId);  
   }
 
   update(propertyId, property) {

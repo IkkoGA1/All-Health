@@ -10,7 +10,7 @@ import { DataTableResource } from 'angular5-data-table';
   templateUrl: './admin-properties.component.html',
   styleUrls: ['./admin-properties.component.css']
 })
-export class PropertiesComponent implements OnInit, OnDestroy {
+export class AdminPropertiesComponent implements OnInit, OnDestroy {
   properties: Property[];
   items: Property[] = []; 
   subscription: Subscription;

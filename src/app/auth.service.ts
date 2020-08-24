@@ -44,6 +44,7 @@ export class AuthService {
 
   logout() {
     this.afAuth.signOut();
+    window.alert('You were logged out successfully.');
     this.router.navigate(['/']);
 
   }

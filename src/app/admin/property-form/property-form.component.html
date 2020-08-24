@@ -46,9 +46,14 @@
             </div>
             <div class="form-group">
                 <label for="state">State</label>
-                <input #state="ngModel" [(ngModel)]="property.state" name="state" id="state" type="text" class="form-control" required>
+                <select #state="ngModel" [(ngModel)]="property.state" name="state" id="state" class="form-control" required>
+                    <option value=""></option>
+                    <option *ngFor="let s of states$ | async" [value]="s.key">
+                        {{ s.payload.val().name }}
+                    </option>
+                </select>
                 <div class="alert alert-danger" *ngIf="state.touched && state.invalid">
-                    Please enter the state for the property.
+                    Please select a state
                 </div>
             </div>
             <div class="form-group">

@@ -1,4 +1,5 @@
 export interface Property {
+    key: string;
     address: string;
     rent: number;
     purchasePrice: number;
