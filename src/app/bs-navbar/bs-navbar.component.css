@@ -3,7 +3,14 @@
 }
 
 .navbar {
-    background-color: lightgrey;
-   
+    background-color: turquoise;
+    
 }
 
+.nav-link {
+    color: black;
+}
+
+.fa-user {
+    color: red;
+}

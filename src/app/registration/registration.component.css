@@ -5,4 +5,11 @@
 
 .login-card {
     max-width: 25rem;
+    
+}
+.card-body {
+    background-color: lightcyan;
+}
+.card-header {
+    background-color: lightskyblue;
 }

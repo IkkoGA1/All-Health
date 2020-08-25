@@ -28,7 +28,7 @@
                         <div class="card-body">
                             <h5 class="card-title">{{ p.address }}</h5>
                             <p class="card-text"> Rent: {{ p.rent | currency:'USD':'$'}}</p>
-                            <p class="card-text"> {{ p.city }}, {{ p.state }} </p>
+                            <p class="card-text"> Location: {{ p.city }}, {{ p.state }} </p>
                         </div>
                       <div class="card-footer row no-gutters" style="text-align:center;">
                             <button routerLink="/rent" (click)="addProperty(p.key)" style="margin:5px" class="btn btn-secondary btn-block">Rent</button> 

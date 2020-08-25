@@ -1,6 +1,6 @@
-<nav class="navbar navbar-expand-md navbar-light bg-light fixed-top">
+<nav class="navbar navbar-expand-md fixed-top">
     <div class="container">
-        <a class="navbar-brand" routerLink="/">AllHealth Homes</a>
+        <a class="navbar-brand" routerLink="/">All Heath Homes</a>
         <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarsExampleDefault"
             aria-controls="navbarsExampleDefault" aria-expanded="false" aria-label="Toggle navigation">
             <span class="navbar-toggler-icon"></span>
@@ -11,6 +11,7 @@
                
                 <li class="nav-item">
                     <a class="nav-link" routerLink="/about">About </a>
+                    <i class="fas fa-warehouse"></i>
                 </li>
             </ul>
             <ul class="navbar-nav">
@@ -30,7 +31,7 @@
                         aria-expanded="false">Welcome, {{ appUser.email  }}</a>
                     <div ngbDropdownMenu class="dropdown-menu" aria-labelledby="dropdown01">
                         <!-- <a class="dropdown-item" routerLink="/properties">Properties</a> -->
-                        <a class="dropdown-item" routerLink="/rentalApp">Manage Rentals</a>
+                        <!-- <a class="dropdown-item" routerLink="/rentalApp">Manage Rentals</a> -->
                         <ng-container *ngIf="appUser.isAdmin">
                             <a class="dropdown-item" routerLink="/admin/properties">Manage Properties</a>
                         </ng-container>
