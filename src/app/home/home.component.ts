@@ -4,7 +4,7 @@ import { CategoryService } from './../category.service';
 import { ActivatedRoute } from '@angular/router';
 import { Property } from '../models/property';
 import 'rxjs/add/operator/switchMap';
-import { RentalService } from '../rental-cart.service';
+import { RentalService } from '../rental.service';
 import { Observable } from 'rxjs/Observable';
 import { RentalCart } from './../models/rental-cart';
 import { take } from 'rxjs/operators';

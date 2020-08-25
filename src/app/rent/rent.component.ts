@@ -1,10 +1,8 @@
 import { Component, OnInit, Input, OnDestroy } from '@angular/core';
-import { PropertyService } from './../property.service';
 import { ActivatedRoute, Router, Route } from '@angular/router';
 import { take } from 'rxjs/internal/operators';
-import { RentalService } from '../rental-cart.service';
-import { property } from 'ngx-custom-validators/src/app/property/validator';
-import { Subscription } from 'rxjs';
+import { RentalService } from '../rental.service';
+
 
 @Component({
   selector: 'app-rent',

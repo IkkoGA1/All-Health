@@ -5,7 +5,7 @@ import { auth } from 'firebase';
 import {Router } from '@angular/router';
 import { RentalCart } from '../models/rental-cart';
 import { Observable } from 'rxjs/Observable';
-import { RentalService } from './../rental-cart.service';
+import { RentalService } from '../rental.service';
 
 
 

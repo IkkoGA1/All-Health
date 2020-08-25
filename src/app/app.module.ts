@@ -28,7 +28,7 @@ import { DataTableModule } from 'angular5-data-table';
 import { AuthGuardService as AuthGuard } from './auth-guard.service';
 import { AdminPropertiesComponent } from './admin/admin-properties/admin-properties.component';
 import { RentComponent } from './rent/rent.component';
-import { RentalService } from './rental-cart.service';
+import { RentalService } from './rental.service';
 import { StatesService } from './states.service';
 
 
