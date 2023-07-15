@@ -23,7 +23,7 @@
     "@angular/router": "~9.1.9",
     "@ng-bootstrap/ng-bootstrap": "^6.1.0",
     "angular5-data-table": "^1.0.3",
-    "bootstrap": "^4.0.0",
+    "bootstrap": "^4.3.1",
     "firebase": "^7.13.2",
     "font-awesome": "^4.7.0",
     "ngx-custom-validators": "^9.1.0",
